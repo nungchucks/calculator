@@ -10,13 +10,8 @@ const displayNumber = () => {
     for (let i = 0; i < numButtons.length; i++) {
         output.innerHTML = " "; 
         numButtons[i].addEventListener('click', () => {
-            if (num1) {
-                output.innerHTML = " "; 
-                output.innerHTML += numButtons[i].innerHTML;
-            }
-            else {
                 output.innerHTML+=numButtons[i].innerHTML;
-            }        });
+        });
     }
 }
 displayNumber();
@@ -51,26 +46,18 @@ clearNumbers();
 const getNumbers = () => {
     for (let i = 0; i < operands.length; i++) {
         operands[i].addEventListener('click', () => {
-            num1=output.innerHTML; 
-            console.log(num1);
+            if (num2) {
+                num2 = output.innerHTML; 
+                output.innerHTML = " ";            
+            } else {
+                num1=output.innerHTML; 
+                output.innerHTML = " ";
+            }
          });
     }
+    return num1, num2; 
+
 }
-
-// const clear = () => {
-//     for (let i = 0; i < numButtons.length; i++) {
-//         numButtons[i].addEventListener('click', () => {
-//             if (num1) {
-//                 output.innerHTML = " "; 
-//                 output.innerHTML += numButtons[i].innerHTML;
-//             }
-//             else {
-//                 output.innerHTML+=numButtons[i].innerHTML;
-//             }
-//         });
-//     }
-// }
-
-
-getNumbers();
 getNumbers(); 
+
+console.log(getNumbers());
