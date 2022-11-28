@@ -1,0 +1,29 @@
+body {
+    background-color: #05071b;
+}
+.grid-container {
+    display: grid; 
+    gap: 15px;
+    grid-template-columns: 80px 80px 80px 80px;
+}
+
+button{
+    width: 85px; 
+    height: 50px;
+    background-color: rgb(75, 75, 75);
+    font-size: 20px;
+    color: white;
+}
+.display{
+    width: 369px;
+    height: 80px;
+    outline: 1px solid grey; 
+}
+.output{
+    border-radius: 8px;
+    text-align: right;
+    padding-top: 35px;
+    padding-right: 9px;
+    color: white;
+    font-size: 40px;
+}
