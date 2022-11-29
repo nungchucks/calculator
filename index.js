@@ -3,8 +3,9 @@ const operands = document.querySelectorAll(".operand");
 const display = document.querySelector('.display');
 const output = document.querySelector('.output');
 const clearButton = document.querySelector('.clearButton');
-const equalsButton = document.querySelector('.equalsButton');
+var equalsButton = document.getElementById('#equals');
 var num1 = 0, num2 = 0; 
+var operator; 
 
 const displayNumber = () => {
     for (let i = 0; i < numButtons.length; i++) {
@@ -46,18 +47,40 @@ clearNumbers();
 const getNumbers = () => {
     for (let i = 0; i < operands.length; i++) {
         operands[i].addEventListener('click', () => {
+            operator = operands[i].id; 
+            console.log(operator); 
             if (num2) {
                 num2 = output.innerHTML; 
-                output.innerHTML = " ";            
+                output.innerHTML = " ";   
             } else {
                 num1=output.innerHTML; 
                 output.innerHTML = " ";
-            }
+           }
+           return operator; 
          });
     }
-    return num1, num2; 
-
 }
-getNumbers(); 
+getNumbers();
 
-console.log(getNumbers());
+operate = (num1, num2, operator) => {
+    if (operator = "multiply") {
+        return num1 * num2;
+    }
+    else if (operator = "divide") {
+        return num1 / num2;
+    }
+    else if (operator = "add") {
+        return num1 + num2;
+    }
+    else if (operator = "subtract") {
+        return num1 - num2;
+    }
+}
+
+if (equalsButton) {
+    equalsButton.addEventListener('click', () => {
+        getNumbers(); 
+        num2 = output.innerHTML; 
+        output.innerHTML = operate(num1, num2, operator);
+    });
+}
