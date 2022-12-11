@@ -4,6 +4,9 @@ const display = document.querySelector('.display');
 const output = document.querySelector('.output');
 const clearButton = document.querySelector('.clearButton');
 var equalsButton = document.getElementById('#equals');
+var equals = document.querySelector('.equalsButton');
+
+
 var num1 = 0, num2 = 0; 
 var operator; 
 
@@ -37,6 +40,8 @@ const clearNumbers = () => {
   
     function execMouseDown() { 
         output.innerHTML = " ";
+        num1 = 0; 
+        num2 = 0; 
     }
 
     clearButton.addEventListener("mousedown", mouseDown);
@@ -48,14 +53,16 @@ const getNumbers = () => {
     for (let i = 0; i < operands.length; i++) {
         operands[i].addEventListener('click', () => {
             operator = operands[i].id; 
-            console.log(operator); 
-            if (num2) {
-                num2 = output.innerHTML; 
-                output.innerHTML = " ";   
-            } else {
-                num1=output.innerHTML; 
-                output.innerHTML = " ";
-           }
+            if (!num1) {
+            num1 = output.innerHTML;
+            }
+            // equals.addEventListener('click', () => {
+            //     num2 = output.innerHTML;
+            //     operate(num1, num2, operator);
+            //     console.log(num1, num2, operator);
+            // }); 
+            console.log(num1);
+            output.innerHTML = " ";
            return operator; 
          });
     }
@@ -63,24 +70,29 @@ const getNumbers = () => {
 getNumbers();
 
 operate = (num1, num2, operator) => {
-    if (operator = "multiply") {
-        return num1 * num2;
+
+    if (operator === "multiply") {
+        return parseInt(num1) * parseInt(num2);
     }
-    else if (operator = "divide") {
-        return num1 / num2;
+    else if (operator === "divide") {
+        return parseInt(num1) / parseInt(num2);
     }
-    else if (operator = "add") {
-        return num1 + num2;
+    else if (operator === "add") {
+        return parseInt(num1) + parseInt(num2);
     }
-    else if (operator = "subtract") {
-        return num1 - num2;
+    else if (operator === "subtract") {
+        return parseInt(num1) - parseInt(num2);
+
     }
 }
 
-if (equalsButton) {
-    equalsButton.addEventListener('click', () => {
-        getNumbers(); 
-        num2 = output.innerHTML; 
-        output.innerHTML = operate(num1, num2, operator);
-    });
-}
+
+equals.addEventListener('click', () => {
+    getNumbers(); 
+    num2 = output.innerHTML; 
+    output.innerHTML = operate(num1, num2, operator);
+    console.log(num1, num2, operator);
+});
+
+
+
